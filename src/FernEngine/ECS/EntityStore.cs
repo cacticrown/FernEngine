@@ -6,27 +6,33 @@ public class EntityStore
     public int nextId = 0;
     private Stack<int> FreeIds;
 
-    public EntityStore(int size)
+    private ComponentStore componentStore;
+
+    public EntityStore(int size, ComponentStore ComponentStore)
     {
         Entities = new Entity[size];
         FreeIds = new Stack<int>();
+        componentStore = ComponentStore;
     }
 
-    public Entity Create(int id = -1)
+    public Entity Create(params IComponent[] components)
     {
-        if(id == -1)
-        {
-            if(FreeIds.Count > 0)
-                id = FreeIds.Pop();
-            else
-                id = nextId++;
-        }
+        int id;
+
+        if (FreeIds.Count > 0)
+            id = FreeIds.Pop();
+        else
+            id = nextId++;
 
         if (id >= Entities.Length)
             Resize(Entities.Length * 2);
 
-        Entity entity = new Entity(id);
+        Entity entity = new Entity(id, this, componentStore);
         Entities[id] = entity;
+        foreach (var component in components)
+        {
+            componentStore.Add(id, component);
+        }
         return entity;
     }
 
@@ -40,6 +46,7 @@ public class EntityStore
         FreeIds.Push(id);
 
         Entities[id] = default;
+        componentStore.RemoveAll(id);
     }
 
     public ref Entity Get(int id)

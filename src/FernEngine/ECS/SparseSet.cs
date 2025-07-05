@@ -8,7 +8,7 @@ public struct SparseSet<T> : ISparseSet<T>
 
     internal int nextId;
 
-    public SparseSet(uint size)
+    public SparseSet(int size)
     {
         dense = new T[size];
         sparse = new int[size];
@@ -33,7 +33,10 @@ public struct SparseSet<T> : ISparseSet<T>
             throw new Exception($"Entity {id} already has a component of type {typeof(T)}");
 
         if (nextId >= dense.Length)
-            Resize(dense.Length * 2);
+            ResizeDense(dense.Length * 2);
+
+        if (id >= sparse.Length)
+            ResizeSparse(Math.Max(sparse.Length * 2, id * 2));
 
         sparse[id] = nextId;
         entityIds[nextId] = id;
@@ -42,11 +45,14 @@ public struct SparseSet<T> : ISparseSet<T>
         nextId++;
     }
 
-    private void Resize(int newSize)
+    private void ResizeDense(int newSize)
     {
         Array.Resize(ref dense, newSize);
         Array.Resize(ref entityIds, newSize);
-
+    }   
+    
+    private void ResizeSparse(int newSize)
+    {
         int oldSize = sparse.Length;
         Array.Resize(ref sparse, newSize);
         for (int i = oldSize; i < newSize; i++)

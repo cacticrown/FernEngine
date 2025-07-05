@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.36221.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FernEngine", "src\FernEngine\FernEngine.csproj", "{1C991A45-2EC7-4F08-9FC7-17EBB2BC8BFF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FernEngine.Test", "src\FernEngine.Test\FernEngine.Test.csproj", "{44BB6AA7-DA9A-493B-96CA-BA29DD3D7BDA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{1C991A45-2EC7-4F08-9FC7-17EBB2BC8BFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C991A45-2EC7-4F08-9FC7-17EBB2BC8BFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C991A45-2EC7-4F08-9FC7-17EBB2BC8BFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44BB6AA7-DA9A-493B-96CA-BA29DD3D7BDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44BB6AA7-DA9A-493B-96CA-BA29DD3D7BDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44BB6AA7-DA9A-493B-96CA-BA29DD3D7BDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44BB6AA7-DA9A-493B-96CA-BA29DD3D7BDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
